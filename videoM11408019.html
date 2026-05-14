@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本山岳探索：富士山、表銀座、白馬岳</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mountain: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43',
+                        },
+                        accent: '#e53e3e',
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(51, 65, 85, 0.5), transparent),
+                        radial-gradient(circle at bottom left, rgba(15, 23, 42, 1), transparent);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+        video, img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .bento-item {
+            grid-column: span 12;
+        }
+        @media (min-width: 768px) {
+            .bento-item-large { grid-column: span 8; }
+            .bento-item-small { grid-column: span 4; }
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Hero / Infographic Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center p-6 hero-gradient overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+            <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent rounded-full blur-[120px] opacity-30"></div>
+        </div>
+
+        <div class="z-10 max-w-6xl w-full">
+            <div class="text-center mb-12">
+                <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tight gradient-text mb-4">
+                    日本山岳巡禮
+                </h1>
+                <p class="text-mountain-300 text-lg md:text-xl font-light tracking-widest uppercase">
+                    Mt. Fuji • Omote Ginza • Mt. Shirouma
+                </p>
+            </div>
+
+            <!-- Infographic Image -->
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-accent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative glass-card p-2 overflow-hidden">
+                    <img src="https://opal.google/board/blobs/32df326e-2e10-4956-a51a-a5c604617139" alt="日本山岳資訊圖表" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="glass-card p-6 hover:bg-white/5 transition-colors duration-300">
+                    <h3 class="text-accent font-bold text-xl mb-2">富士山</h3>
+                    <p class="text-mountain-200 text-sm leading-relaxed">2024年實施吉田路線通行費與人數限制，平衡觀光與信仰價值。</p>
+                </div>
+                <div class="glass-card p-6 hover:bg-white/5 transition-colors duration-300">
+                    <h3 class="text-blue-400 font-bold text-xl mb-2">表銀座縱走</h3>
+                    <p class="text-mountain-200 text-sm leading-relaxed">北阿爾卑斯經典，連接燕岳與槍之岳，極具挑戰性的壯麗稜線。</p>
+                </div>
+                <div class="glass-card p-6 hover:bg-white/5 transition-colors duration-300">
+                    <h3 class="text-emerald-400 font-bold text-xl mb-2">白馬岳</h3>
+                    <p class="text-mountain-200 text-sm leading-relaxed">擁日本最大規模大雪溪與花之名山美譽，山屋設施現代化且完善。</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Video & Audio Center Section -->
+    <section class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="px-4 py-1 rounded-full border border-mountain-500 text-xs text-mountain-400 tracking-widest uppercase mb-4 inline-block">Visual Experience</span>
+                <h2 class="text-4xl font-display font-bold mb-6">山岳快報影片</h2>
+                <div class="section-divider mb-8"></div>
+            </div>
+
+            <div class="relative glass-card p-4 mb-12 shadow-2xl">
+                <video src="https://opal.google/board/blobs/915904b4-05d4-4edc-9821-ded8f16c96ef" controls class="w-full rounded-lg" poster="https://opal.google/board/blobs/32df326e-2e10-4956-a51a-a5c604617139"></video>
+            </div>
+
+            <div class="glass-card p-8 flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center text-accent floating">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.5l-3 3.25m-6.5-6.5l-3 3.25m6.5-6.5L10.5 12m10.5-3v11.25m0-11.25L9 11.25m0 0v11.25m0-11.25L3 13.5" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <h4 class="font-bold text-xl mb-1">雄偉背景音樂</h4>
+                    <p class="text-mountain-400 text-sm mb-4">搭配影像感受群山的震撼節奏</p>
+                    <audio src="https://opal.google/board/blobs/5eb225c6-7db3-4554-9702-1b331226c167" controls class="w-full h-10 opacity-80 hover:opacity-100 transition-opacity"></audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Report Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl font-display font-bold mb-4">探索報告：自然、管理與挑戰</h2>
+                <p class="text-mountain-400">深度解析日本三大標誌性山岳路線的現況與特質</p>
+            </div>
+
+            <div class="space-y-24">
+                <!-- Fuji -->
+                <div class="bento-grid">
+                    <div class="bento-item-large glass-card p-8 md:p-12 hover:border-accent/30 transition-all">
+                        <h3 class="text-3xl font-bold mb-6 text-accent">一、 富士山 (Mt. Fuji)</h3>
+                        <div class="space-y-6 text-mountain-200 leading-relaxed">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">1. 地理特徵與現況</h4>
+                                <p>富士山位於山梨縣與靜岡縣交界，海拔3,776公尺。地理上屬於成層火山，其完美的圓錐山體是由多次噴發後的熔岩與火山灰堆積而成。目前仍被歸類為活火山。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-2">2. 世界文化遺產與價值</h4>
+                                <p>2013年以「富士山——信仰的對象與藝術的源泉」登錄為世界文化遺產。它是日本民間信仰的核心，深度影響了浮世繪等藝術創作。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-item-small bg-accent/10 border border-accent/20 rounded-[24px] p-8 flex flex-col justify-center">
+                        <h4 class="text-accent font-bold mb-4">2024 管理新制</h4>
+                        <ul class="space-y-3 text-sm text-mountain-100">
+                            <li class="flex items-start gap-2"><span class="text-accent">●</span> 通行費：2,000+1,000日圓</li>
+                            <li class="flex items-start gap-2"><span class="text-accent">●</span> 人數限制：每日4,000人</li>
+                            <li class="flex items-start gap-2"><span class="text-accent">●</span> 時段管制：16:00 - 03:00 關閉</li>
+                            <li class="flex items-start gap-2"><span class="text-accent">●</span> 導入線上預約系統</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Omote Ginza -->
+                <div class="bento-grid">
+                    <div class="bento-item-small bg-blue-500/10 border border-blue-500/20 rounded-[24px] p-8 order-2 md:order-1">
+                        <h4 class="text-blue-400 font-bold mb-4">路線重點</h4>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-white/5 rounded-lg">
+                                <span class="text-xs text-blue-300 block mb-1">起點 - 終點</span>
+                                <span class="text-sm">中房溫泉 - 上高地</span>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-lg">
+                                <span class="text-xs text-blue-300 block mb-1">核心技術點</span>
+                                <span class="text-sm">東鐮尾根、合戰尾根</span>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-lg">
+                                <span class="text-xs text-blue-300 block mb-1">補給必吃</span>
+                                <span class="text-sm">合戰小屋夏季西瓜</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-item-large glass-card p-8 md:p-12 hover:border-blue-500/30 transition-all order-1 md:order-2">
+                        <h3 class="text-3xl font-bold mb-6 text-blue-400">二、 表銀座縱走 (Omote Ginza)</h3>
+                        <div class="space-y-6 text-mountain-200 leading-relaxed">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">1. 路線概況與經典名山</h4>
+                                <p>北阿爾卑斯山脈最負盛名的縱走路線。包含「北阿爾卑斯女王」<strong>燕岳</strong>（以花崗岩奇石聞名）與山容尖銳如冰鎬的<strong>槍之岳</strong>。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-2">2. 難易度與技術挑戰</h4>
+                                <p>本路線為中高級，體能要求極高。包含「合戰尾根」急登及「東鐮尾根」的長梯、鐵鍊與斷崖地形。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shirouma -->
+                <div class="bento-grid">
+                    <div class="bento-item-large glass-card p-8 md:p-12 hover:border-emerald-500/30 transition-all">
+                        <h3 class="text-3xl font-bold mb-6 text-emerald-400">三、 白馬岳 (Mt. Shirouma)</h3>
+                        <div class="space-y-6 text-mountain-200 leading-relaxed">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">1. 大雪溪特徵</h4>
+                                <p>長約3.5公里、高低差600公尺的巨大雪谷。夏季需配備簡易冰爪通行。需注意全球暖化帶來的裂縫與落石風險。</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-2">2. 高山植物寶庫</h4>
+                                <p>被譽為「花之名山」，擁有九十九草等特有種，7至8月期間色彩鮮豔的花田與殘雪構成絕美對比。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-item-small bg-emerald-500/10 border border-emerald-500/20 rounded-[24px] p-8 flex flex-col items-center justify-center text-center">
+                        <div class="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                            </svg>
+                        </div>
+                        <h4 class="text-emerald-400 font-bold mb-2">白馬山莊</h4>
+                        <p class="text-xs text-mountain-300">日本最大山小屋<br>容納約 800 人<br>設有 Sky Plaza 咖啡廳</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="mt-24 p-8 md:p-12 glass-card border-white/20">
+                <h3 class="text-2xl font-bold mb-6 text-white">結論</h3>
+                <p class="text-mountain-200 leading-relaxed text-lg">
+                    日本的登山資源呈現多元面貌：富士山正經歷由大眾旅遊轉向永續管理的轉型期；表銀座縱走展示了長距離稜線健行的壯麗與技術挑戰；而白馬岳則完美結合了冰雪地形與生物多樣性。這些路線在完善的山屋體系支援下，成為全球登山愛好者體驗日本山岳魅力的核心選擇。
+                </p>
+                <div class="mt-12">
+                    <h4 class="text-mountain-400 text-sm font-bold uppercase tracking-widest mb-4">參考文獻</h4>
+                    <ul class="text-sm text-mountain-500 space-y-2">
+                        <li>• 山梨縣及靜岡縣政府富士山登山官方公告 (2024)</li>
+                        <li>• 北阿爾卑斯登山地圖及表銀座路線導引手冊</li>
+                        <li>• 白馬村觀光局 (Hakuba Village Tourism Bureau) 登山實測報</li>
+                        <li>• 日本氣象廳 (JMA) 活火山監測資料</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Footer -->
+    <footer class="py-12 border-t border-white/10 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-mountain-400 tracking-widest text-sm mb-2">M11408019</p>
+            <p class="text-mountain-300">
+                【主題探索報告】by <span class="italic text-red-600 font-bold">Famidoc Chang</span>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
