@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山的時光褶皺 - 現代登山敘事</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        mountain: {
+                            deep: '#1a2c2c',
+                            mist: '#f8fafc',
+                            accent: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        .bento-item {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 40px -20px rgba(16, 185, 129, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navigation Overlay -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference">
+        <div class="text-white font-display font-extrabold text-xl tracking-tighter">M11408019</div>
+        <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-xs text-white">山</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-[90vh] w-full flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src='https://opal.google/board/blobs/ebe0937c-aece-4580-81e9-da0ab7901be6' alt='Mountain Banner' class="w-full h-full object-cover hero-mask opacity-60 scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6 text-center animate-fade-in-up">
+            <span class="inline-block px-4 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6 backdrop-blur-md">
+                當代社會觀察 / 台灣山岳文化
+            </span>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black tracking-tight leading-none mb-8">
+                山的時光褶皺：<br/>
+                <span class="gradient-text">從「禁區」到「遊樂場」</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                在台灣，生活的情境往往是極度壓縮的。一段關於權利、自由與靈魂洗滌的當代敘事。
+            </p>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float">
+            <div class="w-6 h-10 border-2 border-slate-500 rounded-full flex justify-center p-1">
+                <div class="w-1 h-2 bg-emerald-500 rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 lg:px-24 py-20 relative">
+        <!-- Introduction -->
+        <section class="max-w-3xl mx-auto mb-32 space-y-8 animate-fade-in-up">
+            <p class="text-xl md:text-2xl text-slate-300 font-light leading-relaxed first-letter:text-6xl first-letter:font-black first-letter:mr-3 first-letter:float-left first-letter:text-emerald-500">
+                身為一個習慣在喧囂中尋找秩序的觀察者，我常在思考：山，對於台灣人而言，究竟是什麼？它曾是神聖不可侵犯的祖靈居所，也曾是地圖上的空白與統治者的禁區；而今，它成了眾人口中的「全台最大遊樂場」。
+            </p>
+            <p class="text-lg text-slate-400 font-light leading-relaxed">
+                這種由海平面直拔三千公尺的物理高度，構築了這座島嶼最鮮明的性格。這段變遷，不僅是地理發現的過程，更是一場關於權利、自由與靈魂洗滌的當代敘事。
+            </p>
+        </section>
+
+        <!-- Bento Grid: Geography Section -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-32">
+            <div class="md:col-span-8 glass-card p-10 bento-item group overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full"></div>
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-4">
+                    <span class="w-8 h-[2px] bg-emerald-500"></span>
+                    密度高到嚇死人！
+                </h2>
+                <p class="text-slate-400 leading-relaxed text-lg mb-8">
+                    台灣這塊土地簡直「硬頸」得不可思議。菲律賓海板塊與歐亞板塊的千年擠壓，硬是在這窄小的島嶼上推擠出超過 <span class="text-emerald-400 font-bold">260 座</span> 「三千公尺級」的高空 VIP 座位。
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <h4 class="text-emerald-400 font-bold mb-2">中央山脈</h4>
+                        <p class="text-xs text-slate-500">護國神脊，畫出東西分水嶺</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <h4 class="text-emerald-400 font-bold mb-2">雪山山脈</h4>
+                        <p class="text-xs text-slate-500">保留冰河掠過大地的絕美痕跡</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <h4 class="text-emerald-400 font-bold mb-2">玉山山脈</h4>
+                        <p class="text-xs text-slate-500">東北亞之巔，台灣人的頂點</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <h4 class="text-emerald-400 font-bold mb-2">阿里山/海岸山脈</h4>
+                        <p class="text-xs text-slate-500">雲海製造廠與看海第一排</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-4 glass-card p-10 bento-item bg-gradient-to-br from-emerald-500/20 to-transparent flex flex-col justify-center">
+                <h3 class="text-2xl font-bold mb-4">社會屬性</h3>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">百岳</span>
+                        <span class="text-sm text-slate-400">大人的收集冊，極致追求。</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">小百岳</span>
+                        <span class="text-sm text-slate-400">家門後的運動場，親民悠閒。</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">中級山</span>
+                        <span class="text-sm text-slate-400">神祕的魔幻迷宮，考驗謙卑。</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Time Machine: Timeline Section -->
+        <section class="mb-32">
+            <h2 class="text-4xl font-display font-black text-center mb-16 gradient-text">時光機啟動：認知轉移</h2>
+            <div class="relative space-y-12">
+                <div class="absolute left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent hidden md:block"></div>
+                
+                <!-- Period 1 -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                        <h4 class="text-emerald-500 font-bold text-xl mb-2">最初：祖靈聖地</h4>
+                        <p class="text-slate-400 text-sm">原住民的神聖客廳，是禁地也是歸宿。布農族之於玉山，泰雅族之於大霸尖山，那種敬畏是深植血液的生態智慧。</p>
+                    </div>
+                    <div class="w-6 h-6 rounded-full bg-emerald-500 border-4 border-slate-950 z-10 group-hover:scale-150 transition-transform"></div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <!-- Period 2 -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="w-6 h-6 rounded-full bg-emerald-500 border-4 border-slate-950 z-10 group-hover:scale-150 transition-transform"></div>
+                    <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+                        <h4 class="text-emerald-500 font-bold text-xl mb-2">日治：測量魂介入</h4>
+                        <p class="text-slate-400 text-sm">1926年「台灣山岳會」成立，山林化為精準的等高線。山從「生存空間」轉向「探索空間」。</p>
+                    </div>
+                </div>
+
+                <!-- Period 3 -->
+                <div class="relative flex flex-col md:flex-row items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                        <h4 class="text-emerald-500 font-bold text-xl mb-2">2019：向山致敬</h4>
+                        <p class="text-slate-400 text-sm">解除「山禁」枷鎖，台灣人真正開始自由呼吸高山空氣。這不僅是政策開放，更是心理的解嚴。</p>
+                    </div>
+                    <div class="w-6 h-6 rounded-full bg-emerald-500 border-4 border-slate-950 z-10 group-hover:scale-150 transition-transform"></div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modern Culture: Photo Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32 items-center">
+            <div class="order-2 md:order-1">
+                <div class="glass-card p-8 relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all"></div>
+                    <h2 class="text-3xl font-bold mb-6">靈魂洗澡 vs 美照大戰</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        在當代社會，爬山已演變成一種大眾化的「靈魂療癒」。都市生活的壓縮感，驅使人們上山吹天然冷氣、躲避老闆。這是一種典型的「閾限體驗」。
+                    </p>
+                    <p class="text-slate-400 leading-relaxed italic border-l-2 border-emerald-500 pl-4">
+                        「沒拍一張漂亮照片，這趟山還算爬過嗎？」這場美照大戰提升了關注，也讓山成了一種「消費品」。
+                    </p>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 space-y-6">
+                <div class="aspect-video rounded-3xl overflow-hidden border border-white/10 group">
+                    <img src="https://opal.google/board/blobs/ebe0937c-aece-4580-81e9-da0ab7901be6" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Culture">
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-1 bg-white/5 p-4 rounded-2xl text-center">
+                        <span class="block text-2xl font-bold text-emerald-400">1000 NTD</span>
+                        <span class="text-xs text-slate-500">玉山的精神認同</span>
+                    </div>
+                    <div class="flex-1 bg-white/5 p-4 rounded-2xl text-center">
+                        <span class="block text-2xl font-bold text-emerald-400">#Tag</span>
+                        <span class="text-xs text-slate-500">數位時代的足跡</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controversies: Grid -->
+        <section class="mb-32">
+            <h2 class="text-3xl font-bold mb-12 text-center">山中的「尷尬事」與陣痛</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 border-t-4 border-t-emerald-500">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6 text-emerald-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">管理與自由的拔河</h4>
+                    <p class="text-sm text-slate-400">到底什麼是「黑山」？政府該管得極嚴，還是放手讓登山者自負盈虧？這是關於規範邊界的博弈。</p>
+                </div>
+                <div class="glass-card p-8 border-t-4 border-t-emerald-500">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6 text-emerald-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">保姆式登山與危機</h4>
+                    <p class="text-sm text-slate-400">商業團降低門檻，卻也降低了敬畏。當 LNT 只是標語，山區的垃圾與排泄物處理成了山神最生氣的事。</p>
+                </div>
+                <div class="glass-card p-8 border-t-4 border-t-emerald-500">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6 text-emerald-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">搜救社會契約</h4>
+                    <p class="text-sm text-slate-400">「直升機是計程車嗎？」高額費用誰買單？這不只是金錢問題，更是關於個人責任感的辯論。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Section -->
+        <section class="max-w-4xl mx-auto glass-card overflow-hidden mb-20">
+            <div class="bg-emerald-600 p-10 text-white">
+                <h2 class="text-4xl font-display font-black mb-4 tracking-tight">未來登山指南：更聰明、更有腦</h2>
+                <p class="opacity-90">台灣的登山文化正朝向更成熟的方向邁進。</p>
+            </div>
+            <div class="p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 flex items-center justify-center bg-emerald-500/10 rounded-full text-emerald-500 font-bold">01</span>
+                        <h5 class="font-bold">科技拯救路癡</h5>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">離線地圖與衛星通訊普及，智慧登山讓風險管理升級，不再是野外驚悚劇。</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="w-10 h-10 flex items-center justify-center bg-emerald-500/10 rounded-full text-emerald-500 font-bold">02</span>
+                        <h5 class="font-bold">手作步道的溫度</h5>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">取代冷冰冰的水泥，用雙手與自然的契合維護路徑，結合在地知識發展文化深度。</p>
+                </div>
+                <div class="md:col-span-2 p-6 bg-white/5 rounded-2xl border border-emerald-500/20">
+                    <p class="text-center text-emerald-400 font-medium">
+                        「未來的帥氣不在於你爬得多快，而在於你是否具備更好的自理能力。」
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Conclusion -->
+        <section class="max-w-2xl mx-auto text-center py-20">
+            <h3 class="text-3xl font-display font-bold mb-8">做一個負責且專業的山友</h3>
+            <p class="text-slate-400 leading-relaxed mb-12">
+                這座島嶼的山，從祖靈的居所演變到現在的全民遊樂場，考驗的其實是我們如何與自然相處的集體智慧。這不僅是對山的敬意，更是我們在追求自由後，必須交出的靈魂試卷。
+            </p>
+            <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-emerald-500">
+                    <div class="w-full h-full bg-slate-800 flex items-center justify-center text-xs font-bold">AUTHOR</div>
+                </div>
+                <span class="text-slate-200 font-bold">學號：M11408019</span>
+                <span class="text-slate-500 text-sm">Intellectual Observer of Island Narratives</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="fixed top-0 left-0 w-full h-1 z-[60]">
+        <div id="progress" class="h-full bg-emerald-500 w-0 transition-all duration-100 shadow-[0_0_10px_#10b981]"></div>
+    </div>
+
+    <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
+
+        // Subtle animation reveal on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+
