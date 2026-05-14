@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Post Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        igGray: '#fafafa',
+                        igBorder: '#dbdbdb',
+                        igBlue: '#0095f6',
+                        igHeart: '#ed4956',
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 12px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fafafa;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Ensure the provided image tag behaves as a 1:1 square cover image */
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+        .line-clamp-caption {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .is-expanded .line-clamp-caption {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-900">
+
+    <div class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+        <!-- Main Post Card -->
+        <article class="w-full max-w-[600px] bg-white border border-igBorder rounded-xl shadow-premium overflow-hidden">
+            
+            <!-- Header Section -->
+            <header class="flex items-center justify-between p-4">
+                <div class="flex items-center gap-3">
+                    <!-- Profile Avatar Placeholder with a modern gradient -->
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-[2px]">
+                        <div class="w-full h-full rounded-full bg-white p-[2px]">
+                            <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                <span class="text-xs font-bold text-gray-500">M11</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-sm tracking-tight hover:text-gray-600 cursor-pointer transition-colors">M11408019</span>
+                        <span class="text-xs text-gray-500">Tokyo, Japan</span>
+                    </div>
+                </div>
+                <button class="text-gray-500 hover:text-black transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                </button>
+            </header>
+
+            <!-- Media Section (1:1 Image) -->
+            <div class="image-container aspect-square bg-gray-100 overflow-hidden border-y border-igBorder">
+                <img src='https://opal.google/board/blobs/8840693c-da0b-41c0-b5da-6719a76d0b50' alt='media_1' />
+            </div>
+
+            <!-- Interaction Bar -->
+            <div class="px-4 pt-4 pb-2">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <!-- Heart -->
+                        <button class="group focus:outline-none" onclick="toggleLike(this)">
+                            <svg id="heart-icon" class="w-7 h-7 transition-all duration-200 group-hover:scale-110 group-active:scale-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </button>
+                        <!-- Comment -->
+                        <button class="hover:opacity-60 transition-all hover:scale-110 active:scale-95">
+                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </button>
+                        <!-- Share -->
+                        <button class="hover:opacity-60 transition-all hover:scale-110 active:scale-95">
+                            <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Bookmark -->
+                    <button class="hover:opacity-60 transition-all hover:scale-110 active:scale-95">
+                        <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Likes Counter -->
+                <div class="mt-2">
+                    <p class="text-sm font-bold">11,408,019 likes</p>
+                </div>
+            </div>
+
+            <!-- Caption Section -->
+            <div id="caption-wrapper" class="px-4 pb-4 transition-all">
+                <div class="text-sm leading-relaxed">
+                    <span class="font-bold mr-2">M11408019</span>
+                    <span id="caption-text" class="whitespace-pre-line text-slate-800">這是一篇關於日本搖滾天團 King Gnu 的介紹！👑🎸
+
+提到當今日本樂壇最強大的搖滾力量，絕對不能錯過 King Gnu！自定義為「Tokyo Chaotic」音色的他們，完美融合了爵士、古典、搖滾、電子與流行等多種元素，創造出前所未有的聽覺饗宴。✨
+
+組合由天才核心常田大希帶領，搭配井口理那如絲綢般透明的高亢嗓音，加上新井和輝與勢喜遊紮實且律動感十足的節奏，每一首歌都像是一部前衛的藝術品。從風靡全亞洲的〈白日〉、充滿速度感的〈一途〉，到情感濃烈的〈雨燦々〉，你的播放清單裡絕對必須有他們的位置！🔥 
+
+還沒聽過的朋友快去補課，聽過的一定要留言分享你最喜歡 King Gnu 的哪一首歌！👇
+
+<span class="text-igBlue">#KingGnu #JRock #日本音樂 #常田大希 #井口理 #新井和輝 #勢喜遊 #白日 #一途 #音樂推薦 #TokyoChaotic #搖滾樂 #KingGnuDomeTour #澀谷系 #音樂人</span></span>
+                </div>
+                
+                <!-- Time stamp -->
+                <p class="text-[10px] uppercase text-gray-400 mt-3 tracking-wider font-semibold">2 hours ago</p>
+            </div>
+
+            <!-- Comment Input (Mimic UI) -->
+            <div class="border-t border-igBorder p-4 flex items-center gap-3">
+                <div class="text-lg">😊</div>
+                <input type="text" placeholder="Add a comment..." class="flex-1 text-sm outline-none bg-transparent">
+                <button class="text-igBlue font-semibold text-sm opacity-50 cursor-default">Post</button>
+            </div>
+        </article>
+    </div>
+
+    <script>
+        function toggleLike(btn) {
+            const icon = btn.querySelector('#heart-icon');
+            if (icon.getAttribute('fill') === 'none') {
+                icon.setAttribute('fill', '#ed4956');
+                icon.setAttribute('stroke', '#ed4956');
+                icon.classList.add('scale-125');
+                setTimeout(() => icon.classList.remove('scale-125'), 200);
+            } else {
+                icon.setAttribute('fill', 'none');
+                icon.setAttribute('stroke', 'currentColor');
+            }
+        }
+
+        // Logic for hashtag coloring if needed, but we already wrapped it in the HTML for visual consistency.
+        // We ensure readability with Noto Sans TC font stack.
+    </script>
+</body>
+</html>
