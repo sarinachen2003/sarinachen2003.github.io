@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Celestial Horoscope Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            DEFAULT: '#1a2a6c',
+                        },
+                        gold: {
+                            DEFAULT: '#d4af37',
+                            light: '#f1d279',
+                            dark: '#aa8c2c',
+                        },
+                        accent: {
+                            orange: '#e67e22',
+                            finance: '#10b981',
+                            love: '#ec4899',
+                            success: '#6366f1',
+                            conflict: '#f59e0b'
+                        },
+                        neutral: {
+                            bg: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'PingFang TC', 'Microsoft JhengHei', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'glow': 'glow 3s infinite alternate',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(212, 175, 55, 0.2)' },
+                            '100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Inter', 'PingFang TC', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .celestial-gradient {
+            background: linear-gradient(135deg, #1a2a6c 0%, #203a43 50%, #2c5364 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.5);
+            cursor: pointer;
+        }
+        .reveal-hidden {
+            opacity: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-slate-800 leading-relaxed min-h-screen">
+
+    <!-- Header Section -->
+    <header class="celestial-gradient text-white pt-16 pb-32 px-6 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <!-- Subtle star-like sparkles (CSS only) -->
+            <div class="absolute top-10 left-1/4 w-1 h-1 bg-white rounded-full"></div>
+            <div class="absolute top-40 right-1/4 w-1.5 h-1.5 bg-gold-light rounded-full"></div>
+            <div class="absolute bottom-20 left-1/3 w-1 h-1 bg-white rounded-full"></div>
+            <div class="absolute top-20 right-10 w-2 h-2 bg-white rounded-full blur-sm"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto relative z-10">
+            <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4 text-gold-light">
+                2026 Horoscope Analysis
+            </h1>
+            <p class="font-display text-lg md:text-xl text-blue-100/80 font-light max-w-xl mx-auto uppercase tracking-widest">
+                Unlock the Secrets of Your Celestial Path
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-[900px] mx-auto px-6 -mt-20 pb-20 relative z-20">
+        
+        <!-- Interactive Input Zone -->
+        <div class="glass rounded-2xl p-8 card-shadow mb-12">
+            <div class="flex flex-col md:flex-row items-end gap-6">
+                <div class="w-full">
+                    <label for="birthdate" class="block font-display font-semibold text-navy-900 mb-3 text-sm uppercase tracking-wider">Select Your Birth Date</label>
+                    <div class="relative group">
+                        <input type="date" id="birthdate" 
+                            class="w-full bg-white/50 border-2 border-slate-200 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-gold transition-all duration-300 font-medium text-navy-800 appearance-none"
+                            placeholder="YYYY-MM-DD">
+                    </div>
+                </div>
+                <button onclick="revealHoroscope()" class="w-full md:w-auto bg-navy hover:bg-navy-800 text-white font-display font-bold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 group whitespace-nowrap">
+                    <span>Generate Forecast</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Section (Dynamic) -->
+        <section id="results" class="reveal-hidden space-y-10">
+            <!-- Identity Header -->
+            <div class="text-center space-y-2 animate-fade-in-up">
+                <div id="zodiac-icon" class="text-7xl mb-4 filter drop-shadow-lg">♒</div>
+                <h2 id="zodiac-name" class="font-display text-5xl font-bold text-navy-900 tracking-tight">Aquarius</h2>
+                <p id="zodiac-date" class="font-display text-gold-dark font-semibold tracking-widest text-sm uppercase">Jan 20 - Feb 18</p>
+            </div>
+
+            <!-- Analysis Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                
+                <!-- Overall Trends -->
+                <div class="md:col-span-2 glass rounded-2xl p-8 card-shadow border-l-8 border-navy animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl">✨</span>
+                        <h3 class="font-display text-2xl font-bold text-navy-900">Overall Trends</h3>
+                    </div>
+                    <p id="trend-text" class="text-slate-600 text-lg leading-relaxed font-body">
+                        Innovative and independent. 2026 marks a pivotal shift in your personal autonomy. You'll find yourself breaking free from outdated structures and embracing a more authentic version of your digital and physical life.
+                    </p>
+                </div>
+
+                <!-- Financial Momentum -->
+                <div class="glass rounded-2xl p-8 card-shadow border-l-8 border-accent-finance animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl">💰</span>
+                        <h3 class="font-display text-xl font-bold text-navy-900">Financial Momentum</h3>
+                    </div>
+                    <p id="finance-text" class="text-slate-600 leading-relaxed font-body">
+                        Gains through technology. This year, your fiscal growth is tied directly to your ability to leverage emerging platforms and decentralized systems. Strategic investments in tech will yield high dividends by Q3.
+                    </p>
+                </div>
+
+                <!-- Love & Relationships -->
+                <div class="glass rounded-2xl p-8 card-shadow border-l-8 border-accent-love animate-fade-in-up" style="animation-delay: 0.3s">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl">❤️</span>
+                        <h3 class="font-display text-xl font-bold text-navy-900">Love & Relationships</h3>
+                    </div>
+                    <p id="love-text" class="text-slate-600 leading-relaxed font-body">
+                        Unconventional and friendly. Relationships thrive when built on intellectual foundations. Expect a significant connection with someone who shares your visionary outlook, likely through a social cause or group project.
+                    </p>
+                </div>
+
+                <!-- Success Mindset -->
+                <div class="glass rounded-2xl p-8 card-shadow border-l-8 border-accent-success animate-fade-in-up" style="animation-delay: 0.4s">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl">🚀</span>
+                        <h3 class="font-display text-xl font-bold text-navy-900">Success Mindset</h3>
+                    </div>
+                    <p id="success-text" class="text-slate-600 leading-relaxed font-body">
+                        Visionary ideas. Your biggest wins come from daring to think differently. Don't suppress your eccentricities; in 2026, your "weirdest" concepts are actually your most valuable assets in the professional arena.
+                    </p>
+                </div>
+
+                <!-- Conflict Resolution -->
+                <div class="glass rounded-2xl p-8 card-shadow border-l-8 border-accent-conflict animate-fade-in-up" style="animation-delay: 0.5s">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-3xl">⚖️</span>
+                        <h3 class="font-display text-xl font-bold text-navy-900">Conflict Resolution</h3>
+                    </div>
+                    <p id="conflict-text" class="text-slate-600 leading-relaxed font-body">
+                        Emotional detachment. When tension arises, your superpower is your ability to step back and analyze the situation objectively. Use logic to navigate disputes, but remember to acknowledge the feelings of others.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const zodiacData = {
+            'Aquarius': {
+                icon: '♒',
+                name: 'Aquarius',
+                range: 'Jan 20 - Feb 18',
+                overall: 'Innovative and independent. 2026 brings a wave of digital transformation that perfectly aligns with your forward-thinking nature.',
+                finance: 'Gains through technology. Expect breakthroughs in fintech or tech-based side ventures that boost your capital.',
+                love: 'Unconventional and friendly. You will find that community engagement leads to profound personal connections this year.',
+                success: 'Visionary ideas. Your ability to see the "Big Picture" puts you two steps ahead of the competition in professional circles.',
+                conflict: 'Emotional detachment. Your cooling perspective helps de-escalate office or family tensions before they boil over.'
+            },
+            'Pisces': {
+                icon: '♓',
+                name: 'Pisces',
+                range: 'Feb 19 - Mar 20',
+                overall: 'Empathetic and artistic. 2026 is a year for creative manifestation and deepening your spiritual practices.',
+                finance: 'Intuitive spending. Your gut feeling about investments will be surprisingly accurate. Trust your inner voice.',
+                love: 'Soulful connections. Romantic life takes on a poetic quality, emphasizing deep emotional resonance over surface traits.',
+                success: 'Creative breakthroughs. Projects you have nurtured in secret are finally ready to be shared with the world.',
+                conflict: 'Boundaries are key. Learn to say no to preserve your energy; this is your main challenge and triumph for 2026.'
+            },
+            'Aries': {
+                icon: '♈',
+                name: 'Aries',
+                range: 'Mar 21 - Apr 19',
+                overall: 'Bold and ambitious. 2026 ignites a fire under your career goals. You are the pioneer of new initiatives.',
+                finance: 'Risk vs Reward. Bold moves in the market pay off, but only if you have done your due diligence first.',
+                love: 'Passionate sparks. Your charisma is at an all-time high, attracting high-energy partners who can keep up with you.',
+                success: 'Leadership excellence. You will likely be tapped for a leadership role that requires your signature decisive action.',
+                conflict: 'Controlled energy. Focus on patience; resolving conflicts requires you to listen twice as much as you speak.'
+            },
+            'Taurus': {
+                icon: '♉',
+                name: 'Taurus',
+                range: 'Apr 20 - May 20',
+                overall: 'Stable and sensual. 2026 is about building long-term security and enjoying the fruits of your steady labor.',
+                finance: 'Tangible assets. Real estate or physical commodities provide the best returns for you this year.',
+                love: 'Steadfast loyalty. Deepening roots with a partner brings immense comfort. Single Taureans find love through family or close friends.',
+                success: 'Persistent growth. Slow and steady wins the race in 2026; your reliability becomes your most marketable skill.',
+                conflict: 'Flexibility needed. Avoid stubbornness; finding a middle ground will resolve long-standing disputes.'
+            },
+            'Gemini': {
+                icon: '♊',
+                name: 'Gemini',
+                range: 'May 21 - Jun 20',
+                overall: 'Versatile and expressive. 2026 is the year of communication. Your words carry more weight than ever before.',
+                finance: 'Diversified income. Multiple streams of revenue from freelance work or consulting keep your finances healthy.',
+                love: 'Mental stimulation. You need a partner who can challenge you intellectually. Shared travel will strengthen bonds.',
+                success: 'Networking magic. Who you know is just as important as what you know. Attend those conferences!',
+                conflict: 'Clarity in speech. Avoid "gray areas" in communication to prevent misunderstandings with colleagues.'
+            },
+            'Cancer': {
+                icon: '♋',
+                name: 'Cancer',
+                range: 'Jun 21 - Jul 22',
+                overall: 'Protective and intuitive. 2026 focuses on the home front and internal healing. A very nurturing year.',
+                finance: 'Safe havens. You feel best when your "nest egg" is secure. Traditional savings plans are your friend this year.',
+                love: 'Domestic bliss. Focus on creating a sanctuary with your partner. Deep, vulnerable conversations lead to intimacy.',
+                success: 'Empathetic leadership. Managing teams with heart leads to loyalty and high performance in your workplace.',
+                conflict: 'Self-care first. Don\'t take things too personally; objective distance is your shield in difficult moments.'
+            },
+            'Leo': {
+                icon: '♌',
+                name: 'Leo',
+                range: 'Jul 23 - Aug 22',
+                overall: 'Radiant and confident. 2026 puts you center stage. Your personal brand experiences a major surge.',
+                finance: 'Investment in self. Spending on education or personal presentation leads to direct financial returns.',
+                love: 'Grand gestures. Romance is theatrical and vibrant. If single, you\'ll meet someone while pursuing a hobby.',
+                success: 'Recognition and awards. Your hard work over the last three years finally gets the public acknowledgment it deserves.',
+                conflict: 'Humility wins. Acknowledging your mistakes early will dissolve any tension before it turns into a drama.'
+            },
+            'Virgo': {
+                icon: '♍',
+                name: 'Virgo',
+                range: 'Aug 23 - Sep 22',
+                overall: 'Analytical and helpful. 2026 is a year of refinement. You are optimizing every aspect of your life.',
+                finance: 'Detailed budgeting. Your precision allows you to find hidden savings that others miss entirely.',
+                love: 'Service-based love. Actions speak louder than words. Small acts of kindness strengthen your relationship daily.',
+                success: 'Operational mastery. You are the "go-to" person for solving complex problems at work this year.',
+                conflict: 'Constructive criticism. Deliver feedback with kindness to maintain harmony in your professional team.'
+            },
+            'Libra': {
+                icon: '♎',
+                name: 'Libra',
+                range: 'Sep 23 - Oct 22',
+                overall: 'Harmonious and diplomatic. 2026 brings balance to your work-life equation after a period of chaos.',
+                finance: 'Joint ventures. Partnerships in business or shared investments are particularly lucky for you right now.',
+                love: 'Balanced partnership. You and your partner find a new rhythm. If single, balance your own life first to attract a match.',
+                success: 'Collaborative wins. Success comes through group efforts rather than solo missions this year.',
+                conflict: 'Fair mediation. You will be called to act as a peacemaker between others. Trust your sense of justice.'
+            },
+            'Scorpio': {
+                icon: '♏',
+                name: 'Scorpio',
+                range: 'Oct 23 - Nov 21',
+                overall: 'Intense and transformative. 2026 is a "Phoenix" year—shedding the old to reveal a more powerful version of yourself.',
+                finance: 'Strategic depth. You excel at seeing value where others see waste. Deep-dive research pays off.',
+                love: 'Magnetic attraction. Your mystery is your draw. Expect intense, life-changing emotional experiences in love.',
+                success: 'Focused power. Your ability to concentrate on a single goal until it\'s finished makes you unstoppable.',
+                conflict: 'Transmutation. Turn your anger into productivity; your intensity is a tool, not just a reaction.'
+            },
+            'Sagittarius': {
+                icon: '♐',
+                name: 'Sagittarius',
+                range: 'Nov 22 - Dec 21',
+                overall: 'Adventurous and optimistic. 2026 expands your horizons through travel and higher learning.',
+                finance: 'Foreign markets. Opportunities abroad or through international companies provide the best financial growth.',
+                love: 'Freedom and trust. Relationships that offer you space to grow will thrive. Shared adventures are the glue.',
+                success: 'Philosophical reach. Teaching, publishing, or speaking will bring you significant professional acclaim.',
+                conflict: 'The big picture. Don\'t sweat the small stuff; keeping a broad perspective helps you breeze through petty drama.'
+            },
+            'Capricorn': {
+                icon: '♑',
+                name: 'Capricorn',
+                range: 'Dec 22 - Jan 19',
+                overall: 'Disciplined and enduring. 2026 is the year your long-term legacy starts to take a visible shape.',
+                finance: 'Compounding gains. The structures you built years ago are finally starting to produce significant "passive" wealth.',
+                love: 'Building together. Long-term goals shared with a partner create a powerful, unbreakable bond.',
+                success: 'Institutional influence. You may find yourself moving into an executive or authoritative role within your industry.',
+                conflict: 'Professional poise. Stay calm and maintain your integrity; your reputation is your best defense in any conflict.'
+            }
+        };
+
+        function getZodiac(date) {
+            const d = new Date(date);
+            const m = d.getMonth() + 1;
+            const day = d.getDate();
+            
+            if ((m == 1 && day >= 20) || (m == 2 && day <= 18)) return "Aquarius";
+            if ((m == 2 && day >= 19) || (m == 3 && day <= 20)) return "Pisces";
+            if ((m == 3 && day >= 21) || (m == 4 && day <= 19)) return "Aries";
+            if ((m == 4 && day >= 20) || (m == 5 && day <= 20)) return "Taurus";
+            if ((m == 5 && day >= 21) || (m == 6 && day <= 20)) return "Gemini";
+            if ((m == 6 && day >= 21) || (m == 7 && day <= 22)) return "Cancer";
+            if ((m == 7 && day >= 23) || (m == 8 && day <= 22)) return "Leo";
+            if ((m == 8 && day >= 23) || (m == 9 && day <= 22)) return "Virgo";
+            if ((m == 9 && day >= 23) || (m == 10 && day <= 22)) return "Libra";
+            if ((m == 10 && day >= 23) || (m == 11 && day <= 21)) return "Scorpio";
+            if ((m == 11 && day >= 22) || (m == 12 && day <= 21)) return "Sagittarius";
+            if ((m == 12 && day >= 22) || (m == 1 && day <= 19)) return "Capricorn";
+            return "Aquarius"; // Default
+        }
+
+        function revealHoroscope() {
+            const dateInput = document.getElementById('birthdate').value;
+            if (!dateInput) {
+                alert('Please select your birth date to unlock the stars.');
+                return;
+            }
+
+            const signKey = getZodiac(dateInput);
+            const data = zodiacData[signKey];
+
+            // Update DOM
+            document.getElementById('zodiac-icon').textContent = data.icon;
+            document.getElementById('zodiac-name').textContent = data.name;
+            document.getElementById('zodiac-date').textContent = data.range;
+            document.getElementById('trend-text').textContent = data.overall;
+            document.getElementById('finance-text').textContent = data.finance;
+            document.getElementById('love-text').textContent = data.love;
+            document.getElementById('success-text').textContent = data.success;
+            document.getElementById('conflict-text').textContent = data.conflict;
+
+            // Animate reveal
+            const results = document.getElementById('results');
+            results.classList.remove('reveal-hidden');
+            results.classList.add('block');
+            
+            // Scroll to results smoothly
+            window.scrollTo({
+                top: results.offsetTop - 100,
+                behavior: 'smooth'
+            });
+
+            // Re-trigger animations if needed
+            const animatedElements = results.querySelectorAll('.animate-fade-in-up');
+            animatedElements.forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; /* trigger reflow */
+                el.style.animation = null;
+            });
+        }
+    </script>
+</body>
+</html>
